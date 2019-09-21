@@ -1,0 +1,26 @@
+trigger:
+  tags:
+    include:
+      - v*
+  branches:
+    include:
+      - "*"
+  paths:
+    exclude:
+      - README.md
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  DOCKER_CONTAINER_REGISTRY: 'Decentralized Cloud Docker Hub'
+  DOCKER_REPOSITORY_NAME: 'decentralizedcloud/tenant-contract'
+  BUILD_DOCKER_FILE_PATH: '$(system.defaultWorkingDirectory)/docker/Dockerfile.build'
+
+steps:
+- task: Bash@3
+  displayName: "Generating docker tags"
+  inputs:
+    filePath:  '$(system.defaultWorkingDirectory)/script/generate-docker-tag.sh'
+    arguments: $(Build.SourceBranch) $(Build.BuildId)
+
