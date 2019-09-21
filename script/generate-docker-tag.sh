@@ -13,6 +13,7 @@ echo "********************************************"
 echo ${build_source_branch}
 echo "********************************************"
 
+
 if [[ "$build_source_branch" == refs/pull* ]]; then
     # building repository name triggered by Pull Request
     build_source_branch="${build_source_branch//refs\/pull\//}"
