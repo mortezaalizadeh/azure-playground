@@ -9,7 +9,9 @@ cd "$current_directory"
 build_source_branch="$1"
 build_id="$2"
 
+echo "********************************************"
 echo ${build_source_branch}
+echo "********************************************"
 
 if [[ "$build_source_branch" == refs/pull* ]]; then
     # building repository name triggered by Pull Request
